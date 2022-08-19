@@ -1,0 +1,22 @@
+{
+  "name": "re-learn-nodejs-backend",
+  "version": "1.0.0",
+  "description": "link to the tuto https://www.youtube.com/watch?v=hKyudh3rC_A",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HGride/Learn-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HGride/Learn-nodejs/issues"
+  },
+  "homepage": "https://github.com/HGride/Learn-nodejs#readme",
+  "dependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
