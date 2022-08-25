@@ -1,14 +1,23 @@
 const express = require('express')
 const bookRouter = express.Router()
-const connect = require('./../DataBase/db')
+const Book = require('./../DataBase/models/book.model')
 
 
 bookRouter.route("/")
     .get((req, res)=>{
-        res.send("All books")
+        Book.find()
+            .exec((err, books)=>{
+                if(err){
+                    res.send("An error occured while finding data")
+                    console.error(`An error occured while get all the books: ${err}`);
+                }else{
+                    res.json(books)
+                }
+            })
     })
     .post((req, res)=>{
-        res.send("Your book have been successfully created ! Good job !")
+        /*let book = new Book;*/
+
     })
 
 bookRouter.route("/:id")
@@ -22,4 +31,4 @@ bookRouter.route("/:id")
         res.send(`Book n° ${req.params.id} have been delete`)
     })
 
-module.exports = bookRouter;
+module.exports = bookRouter; 

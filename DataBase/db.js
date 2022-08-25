@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 mongoose.connect(
-    'mongodb+srv://TheoLesage:qMjJMLaXNvCpIOWz@devcluster.ntyfi72.mongodb.net/?retryWrites=true&w=majority',
+    'mongodb://localhost:27017/',
     { 
         autoIndex: true,
         useNewUrlParser: true,
@@ -8,7 +8,7 @@ mongoose.connect(
     },
     (err)=>{
         if(err) console.error(`An error occured while connecting to MongoDB: ${err}`)
-        else console.log("MongoDB connected via mongoose");
+        else console.log("MongoDB connected");
     }
 )
 

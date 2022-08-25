@@ -2,11 +2,14 @@ const express = require('express')
 const app = express()
 const _PORT = 3000
 
+
 // Router
 const routes = require('./routes/index.routes')
 
 // Middlewears
 app.use(routes)
+app.use(express.json())
+app.use(express.urlencoded())
 
 // View engine
 app.set("view engine", "pug"); 
