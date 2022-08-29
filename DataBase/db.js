@@ -1,16 +1,23 @@
-const mongoose = require('mongoose')
-mongoose.connect(
-    'mongodb://localhost:27017/',
-    { 
-        autoIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    },
-    (err)=>{
-        if(err) console.error(`An error occured while connecting to MongoDB: ${err}`)
-        else console.log("MongoDB connected");
-    }
-)
+const mongoose = require('mongoose');
+
+async function connectToDb(){
+    await mongoose.connect(
+        'mongodb://0.0.0.0:27017/LearnNode',
+        { 
+            autoIndex: true,
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        },
+        (err)=>{
+            if(err) console.error(`An error occured while connecting to MongoDB: $  {err}`)
+            else console.log("MongoDB connected");
+        }
+    );
+}
+
+
+module.exports = connectToDb
+
 
 /* MongoDB module
 const { MongoClient } = require('mongodb')

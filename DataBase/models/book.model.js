@@ -1,11 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const BookSchema = new Schema({
+const BookSchema = new Schema(
+{
     title: {
         type: String,
-        require: true,
-        unique: true
+        validate: {
+            validator: function(toValidate){
+                return /[\s\d\w\°-]*/g.test(toValidate)
+            },
+            message: props => `${props.value} is not a  valid title`
+        },
+        require: [true, 'The title is required'],
+        unique: [true, "It's not unique"]
     },
     author: {
         type: String,
@@ -18,8 +25,8 @@ const BookSchema = new Schema({
         max: 9000000000000000
     },
     publishingDate: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: "?noDate"
     },
     resume: {
         type: String,

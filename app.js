@@ -1,23 +1,31 @@
-const express = require('express')
-const app = express()
-const _PORT = 3000
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser')
+const connectToDb = require('./DataBase/db')
+
+const _PORT = 3000;
 
 
-// Router
-const routes = require('./routes/index.routes')
+
 
 // Middlewears
-app.use(routes)
-app.use(express.json())
-app.use(express.urlencoded())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 
-// View engine
-app.set("view engine", "pug"); 
+// Router
+const routes = require('./Routes/index.routes');
+app.use(routes);
 
-app.listen(_PORT, (err)=>{
-    if(err) throw err;
-    console.info(`Server started at http://localhost:${_PORT}`)
-})
+
+connectToDb().then(
+    app.listen(_PORT, (err)=>{
+        if(err) throw err;
+        console.info(`Server started at http://localhost:${_PORT}`);
+    })
+)
+
 
 /* const http = require('http');
 const fs = require('fs');

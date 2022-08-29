@@ -1,34 +1,22 @@
+// /book Routes
+
 const express = require('express')
 const bookRouter = express.Router()
-const Book = require('./../DataBase/models/book.model')
 
+//Controller
+const bookController = require('../Controllers/book.controller')
 
+// Routes
+
+// /book
 bookRouter.route("/")
-    .get((req, res)=>{
-        Book.find()
-            .exec((err, books)=>{
-                if(err){
-                    res.send("An error occured while finding data")
-                    console.error(`An error occured while get all the books: ${err}`);
-                }else{
-                    res.json(books)
-                }
-            })
-    })
-    .post((req, res)=>{
-        /*let book = new Book;*/
+    .get(bookController.index)
+    .post(bookController.create)
 
-    })
-
+// /book/:id
 bookRouter.route("/:id")
-    .get((req, res)=>{
-        res.send(`Book n° ${req.params.id}`)
-    })
-    .patch((req, res)=>{
-        res.send(`Book n° ${req.params.id} have been update`)
-    })
-    .delete((req, res)=>{
-        res.send(`Book n° ${req.params.id} have been delete`)
-    })
+    .get(bookController.getOneBook)
+    .put(bookController.upsert)
+    .delete(bookController.remove)
 
 module.exports = bookRouter; 
